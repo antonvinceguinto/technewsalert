@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import { CssBaseline, Typography, Grid, AppBar, Toolbar } from '@mui/material';
+import { NewsItem } from './components/NewsItem';
+import { Search } from './components/Search';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CssBaseline />
+      <AppBar position='fixed'>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Typography variant='h6'>Latest Tech News</Typography>
+          <Search />
+        </Toolbar>
+      </AppBar>
+      <main>
+        <div className='container'>
+          <Grid
+            container
+            spacing={3}
+            direction='row'
+            justifyContent='center'
+            alignItems='center'
+            sx={{
+              mt: '2rem',
+            }}
+          >
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+            <NewsItem />
+          </Grid>
+        </div>
+      </main>
+    </>
   );
-}
+};
 
 export default App;
