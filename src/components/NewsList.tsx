@@ -13,6 +13,9 @@ const useStyles: any = makeStyles((theme) => ({
     fontWeight: 'bold',
     textAlign: 'left',
   },
+  newsSource: {
+    textAlign: 'left',
+  },
   urlImage: {
     flex: 1,
     width: '100%',
@@ -28,20 +31,28 @@ interface NewsProps {
   author: string;
   urlToImage: string;
   url: string;
+  source: {
+    name: string;
+  };
 }
 
 export const NewsList: React.FC = () => {
   const styles = useStyles();
 
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState<any>([]);
 
   useEffect(() => {
     const fetchNews = async () => {
-      const res = await axios.get(
+      const newsRes = await axios.get(
         `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${process.env.REACT_APP_API_KEY}`
       );
-      console.log(res.data);
-      setNews(res.data.articles);
+      const bcoinRes = await axios.get(
+        `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${process.env.REACT_APP_API_KEY}`
+      );
+
+      const tempNews = [...newsRes.data.articles, ...bcoinRes.data.articles];
+
+      setNews(tempNews);
     };
 
     fetchNews();
@@ -54,6 +65,7 @@ export const NewsList: React.FC = () => {
     author,
     urlToImage,
     url,
+    source,
   }: NewsProps) => {
     return (
       <Grid item maxWidth='sm'>
@@ -67,6 +79,9 @@ export const NewsList: React.FC = () => {
           <Box px={3} pb={2} pt={1}>
             <Typography variant='h6' className={styles.newsTitle}>
               {title}
+            </Typography>
+            <Typography color={'gray'} fontSize={13}>
+              {source.name}
             </Typography>
             <Typography mt={1}>{content}</Typography>
             <Box
@@ -113,6 +128,7 @@ export const NewsList: React.FC = () => {
             title={prop.title}
             urlToImage={prop.urlToImage}
             url={prop.url}
+            source={prop.source}
           />
         ))}
     </Grid>
