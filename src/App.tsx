@@ -1,7 +1,7 @@
 import './styles/App.css';
-import { CssBaseline, Typography, Grid, AppBar, Toolbar } from '@mui/material';
-import { NewsItem } from './components/NewsItem';
+import { CssBaseline, Typography, AppBar, Toolbar } from '@mui/material';
 import { Search } from './components/Search';
+import { NewsList } from './components/NewsList';
 
 const App: React.FC = () => {
   return (
@@ -15,35 +15,12 @@ const App: React.FC = () => {
       </AppBar>
       <main>
         <div className='container'>
-          <Grid
-            container
-            spacing={3}
-            direction='row'
-            justifyContent='center'
-            alignItems='center'
-            sx={{
-              mt: '2rem',
-            }}
-          >
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
-          </Grid>
+          <NewsList />
         </div>
       </main>
+      <footer className='footer'>
+        Copyright&copy;2022 Tech News Alert
+      </footer>
     </>
   );
 };

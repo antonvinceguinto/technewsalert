@@ -3,3 +3,13 @@
     display: flex;
     flex-direction: column;
 }
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    color: rgb(131, 131, 131);
+    font-size: small;
+}
